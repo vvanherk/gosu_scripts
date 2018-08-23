@@ -1,0 +1,28 @@
+uses ca.cooperators.pc.advantagediscount.MultiProductInfo
+
+var p=job.slicedPeriod("50359765")
+print("Policy Info: " + p)
+//print("FarmPolicy = " + p.policy.isFarmPolicy)
+
+var multiProductInfo = new MultiProductInfo()
+
+var lineId = "pr"
+var aChecker =  new ca.cooperators.pc.advantagediscount.AdvantageDiscount()
+
+for(insured in p.NamedInsureds) {
+  
+  print("Named Insured: " + insured)
+  print(p.MultiPolicyInterfaceSuccess_CG)
+  var publicId = insured.AccountContactRole.AccountContact.Contact.PublicID
+  print(publicId)
+
+  
+  var mpInfo : MultiProductInfo = aChecker.checkMultiProductDiscount(publicId, lineId, p.BaseState)    //publicId of accountholder contact, and policyline type, e.g.  "pr" for Hab
+  print({publicId, lineId, mpInfo.Discount})
+  multiProductInfo.combine(mpInfo)
+ //print(mpInfo.Discount)
+}
+
+  print("MultiDiscount" + p.MultiPolicyDiscount_CG)
+
+

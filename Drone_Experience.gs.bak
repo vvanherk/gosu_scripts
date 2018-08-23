@@ -1,0 +1,34 @@
+//var pp = Job.slicedPeriod("120567")  // local wo - mlt
+
+//var pp = Job.slicedPeriod("28353896")  // dev wo
+
+var jobNumber = "28353896"
+var pp = find(x in Job where x.JobNumber == jobnumber).AtMostOneRow.SelectedVersion
+
+print(pp)
+
+
+// Drone experience
+var droneExperience = 0
+
+
+var periodYear = pp.PeriodStart?.YearOfDate
+
+var boundPeriods = pp.Policy?.BoundPeriods
+
+for(bp in boundPeriods) {
+
+	print(bp)
+}
+
+var dflLines = pp.Policy?.BoundPeriods*.FLiabLine_CG.where(\ fl -> fl.covFLDroneExists )
+
+// vvh - todo - remove print statements
+print("dfLines.Count: " + dflLines.Count)
+
+//if(dflLines.Count > 0) {
+//var minLine = dflLines?.minBy(\ dfl -> dfl.Branch.PeriodStart)
+//print("Period Year is: " + periodYear)
+//print("Min Period Year is: " + minLine?.Branch?.PeriodStart?.YearOfDate)
+//droneRatingData.DroneExperience = periodYear - minLine?.Branch?.PeriodStart?.YearOfDate
+
